@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echo & Liam - Wedding Day Schedule</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        } 
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fef3c7 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .names {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .names h1 {
+            font-family: Georgia, serif;
+            font-size: 3.5rem;
+            color: #374151;
+            font-weight: normal;
+        }
+
+        .heart {
+            width: 2rem;
+            height: 2rem;
+            color: #fb7185;
+            fill: #fb7185;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #6b7280;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 0.75rem 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .schedule-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .schedule-title {
+            font-family: Georgia, serif;
+            font-size: 2rem;
+            color: #374151;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .event {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .event:last-child {
+            margin-bottom: 0;
+        }
+
+        .event-arrival {
+            background: linear-gradient(to right, #fdf2f8, #fce7f3);
+        }
+
+        .event-ceremony {
+            background: linear-gradient(to right, #fffbeb, #fef3c7);
+        }
+
+        .event-photos {
+            background: linear-gradient(to right, #ecfdf5, #f0fdfa);
+        }
+
+        .event-walk {
+            background: linear-gradient(to right, #eff6ff, #e0e7ff);
+        }
+
+        .event-lunch {
+            background: linear-gradient(to right, #faf5ff, #fce7f3);
+        }
+
+        .event-icon {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .icon-arrival {
+            background: #fce7f3;
+        }
+
+        .icon-ceremony {
+            background: #fef3c7;
+        }
+
+        .icon-photos {
+            background: #d1fae5;
+        }
+
+        .icon-walk {
+            background: #dbeafe;
+        }
+
+        .icon-lunch {
+            background: #e9d5ff;
+        }
+
+        .event-content {
+            flex: 1;
+        }
+
+        .event-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-description {
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .location {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            color: #6b7280;
+        }
+
+        .location-name {
+            font-weight: 500;
+        }
+
+        .location-address {
+            font-size: 0.875rem;
+        }
+
+        .parking-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 2rem;
+        }
+
+        .parking-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .parking-title {
+            font-family: Georgia, serif;
+            font-size: 1.5rem;
+            color: #374151;
+        }
+
+        .parking-info {
+            background: #f9fafb;
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+
+        .parking-subtitle {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .icon {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .icon-large {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .names h1 {
+                font-size: 2.5rem;
+            }
+            
+            .schedule-card {
+                padding: 2rem;
+            }
+            
+            .event {
+                gap: 1rem;
+            }
+            
+            .event-icon {
+                width: 3rem;
+                height: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="names">
+                <svg class="heart icon-large" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                <h1>Echo & Liam</h1>
+                <svg class="heart icon-large" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+            </div>
+            <p class="subtitle">Wedding Day Schedule</p>
+            <div class="date-badge">
+                <p>Saturday, 18th October 2025</p>
+            </div>
+        </div>
+
+        <!-- Schedule -->
+        <div class="schedule-card">
+            <h2 class="schedule-title">Order of Events</h2>
+
+            <!-- Arrival -->
+            <div class="event event-arrival">
+                <div class="event-icon icon-arrival">
+                    <svg class="icon" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12,6 12,12 16,14"/>
+                    </svg>
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">11:00 AM - Arrival</h3>
+                    <div class="location">
+                        <svg class="icon" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <div>
+                            <p class="location-name">Department of Customer Service / Registry Weddings</p>
+                            <p class="location-address">Wharf 10, 52 Pirrama Rd, Pyrmont NSW 2008</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ceremony -->
+            <div class="event event-ceremony">
+                <div class="event-icon icon-ceremony">
+                    <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">11:15 AM - 11:45 AM - Wedding Ceremony</h3>
+                    <p class="event-description">The moment we've all been waiting for! 💍</p>
+                </div>
+            </div>
+
+            <!-- Photos -->
+            <div class="event event-photos">
+                <div class="event-icon icon-photos">
+                    <svg class="icon" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">11:45 AM - 12:00 PM - Group Photos</h3>
+                    <p class="event-description">Capturing memories with family and friends</p>
+                </div>
+            </div>
+
+            <!-- Walk -->
+            <div class="event event-walk">
+                <div class="event-icon icon-walk">
+                    <svg class="icon" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">12:00 PM - Walk to Restaurant</h3>
+                    <p class="event-description">A short stroll to our celebration venue</p>
+                </div>
+            </div>
+
+            <!-- Lunch -->
+            <div class="event event-lunch">
+                <div class="event-icon icon-lunch">
+                    <svg class="icon" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+                        <path d="M7 2v20"/>
+                        <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3z"/>
+                    </svg>
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">12:30 PM - Lunch & Drinks at Sokyo</h3>
+                    <p class="event-description">Celebrating with delicious food and great company! 🥂</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Parking Information -->
+        <div class="parking-card">
+            <div class="parking-header">
+                <svg class="icon-large" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M14 16H9m10 0h3m-3-8h3m-6 8l1.5-4L18 16m-6-8v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2z"/>
+                    <path d="M6 8h.01M6 12h.01"/>
+                </svg>
+                <h2 class="parking-title">Parking Information</h2>
+            </div>
+            <div class="parking-info">
+                <h3 class="parking-subtitle">Recommended Parking</h3>
+                <div class="location">
+                    <svg class="icon" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <div>
+                        <p class="location-name">The Star Main Entrance</p>
+                        <p class="location-address">55 Pirrama Road, Pyrmont 2009</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <svg class="heart icon" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+            <p>We can't wait to celebrate with you!</p>
+            <svg class="heart icon" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+        </div>
+    </div>
+</body>
+</html>
